@@ -1,5 +1,8 @@
+'use client'
+
 import { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   BarChart3,
   Ticket,
@@ -68,8 +71,8 @@ const supportItems = [
 export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === "collapsed";
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const pathname = usePathname();
+  const currentPath = pathname;
 
   const isActive = (path: string) => currentPath === path;
   const getNavClass = (path: string) =>
@@ -118,21 +121,21 @@ export function AppSidebar() {
               {mainNavItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavClass(item.url)}>
+                    <Link href={item.url} className={getNavClass(item.url)}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                   {item.title === "Tickets" && !collapsed && currentPath.startsWith("/tickets") && (
                     <div className="ml-6 mt-1 space-y-1">
                       {ticketSubItems.map((subItem) => (
                         <SidebarMenuButton key={subItem.title} asChild>
-                          <NavLink 
-                            to={subItem.url} 
+                          <Link 
+                            href={subItem.url} 
                             className={`text-sm ${getNavClass(subItem.url)}`}
                           >
                             <span>{subItem.title}</span>
-                          </NavLink>
+                          </Link>
                         </SidebarMenuButton>
                       ))}
                     </div>
@@ -153,10 +156,10 @@ export function AppSidebar() {
               {peopleItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavClass(item.url)}>
+                    <Link href={item.url} className={getNavClass(item.url)}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -174,10 +177,10 @@ export function AppSidebar() {
               {knowledgeItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavClass(item.url)}>
+                    <Link href={item.url} className={getNavClass(item.url)}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -195,10 +198,10 @@ export function AppSidebar() {
               {analyticsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavClass(item.url)}>
+                    <Link href={item.url} className={getNavClass(item.url)}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
@@ -216,10 +219,10 @@ export function AppSidebar() {
               {supportItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavClass(item.url)}>
+                    <Link href={item.url} className={getNavClass(item.url)}>
                       <item.icon className="h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
-                    </NavLink>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
